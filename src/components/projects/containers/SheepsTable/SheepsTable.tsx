@@ -1,22 +1,27 @@
 import styles from './SheepsTable.module.css';
 import SmallSheep from '../../../../assets/SmallSheep';
 
-const data = [
-  { sheep: 'Adrian Ziętek', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
-  { sheep: 'TestTh', md: 'TestTd' },
+const data: sheepsData[] = [
+  { sheep: 'Adrian Ziętek', md: 3 },
+  { sheep: 'TestTh', md: 2 },
+  { sheep: 'TestTh', md: 3 },
+  { sheep: 'TestTh', md: 4 },
+  { sheep: 'TestTh', md: 5 },
+  { sheep: 'TestTh', md: 6 },
+  { sheep: 'TestTh', md: 7 },
+  { sheep: 'TestTh', md: 3 },
+  { sheep: 'TestTh', md: 1 },
+  { sheep: 'TestTh', md: 4 },
+  { sheep: 'TestTh', md: 2 },
+  { sheep: 'TestTh', md: 7 },
+  { sheep: 'TestTh', md: 6 },
+  { sheep: 'TestTh', md: 2 },
 ];
+
+interface sheepsData {
+  sheep: string;
+  md: number;
+}
 
 const SheepsTable = () => {
   return (
@@ -30,8 +35,12 @@ const SheepsTable = () => {
           </colgroup>
           <thead>
             <tr>
-              <th scope="col">Sheeps</th>
-              <th scope="col">MDs</th>
+              <th scope="col" className="select-none">
+                Sheeps
+              </th>
+              <th scope="col" className="select-none">
+                MDs
+              </th>
             </tr>
           </thead>
         </table>
@@ -63,7 +72,7 @@ const SheepsTable = () => {
               <td>
                 <SmallSheep />
               </td>
-              <td>TBA</td>
+              <td>{data.reduce((n, { md }) => n + md, 0)}</td>
             </tr>
           </tfoot>
         </table>
