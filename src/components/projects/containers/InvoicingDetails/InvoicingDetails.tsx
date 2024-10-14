@@ -1,4 +1,4 @@
-import HappySheep from "../../../assets/HappySheep";
+import HappySheep from '../../../../assets/HappySheep';
 
 const InvoicingDetails = () => {
   return (

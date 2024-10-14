@@ -1,5 +1,5 @@
-import Logo from "../../assets/Logo";
-import NotLogged from "../../assets/NotLogged";
+import Logo from '../../assets/Logo';
+import NotLogged from '../../assets/NotLogged';
 
 const Navbar = () => {
   return (

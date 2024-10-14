@@ -1,4 +1,4 @@
-import BuisnessSheep from "../../../assets/BuisnessSheep";
+import BuisnessSheep from '../../../../assets/BuisnessSheep';
 
 const Notes = () => {
   return (
