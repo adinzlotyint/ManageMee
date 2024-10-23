@@ -1,92 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './ProjectsTable.module.css';
-
-const data = [
-  {
-    year: '2021',
-    project: 'Apollo',
-    type: 'Research',
-    leader: 'John Doe',
-    trader: 'Alice Johnson',
-  },
-  {
-    year: '2019',
-    project: 'Orion',
-    type: 'Development',
-    leader: 'Jane Smith',
-    trader: 'Bob Martin',
-  },
-  {
-    year: '2023',
-    project: 'Helios',
-    type: 'Research',
-    leader: 'Michael Clark',
-    trader: 'Charlie Evans',
-  },
-  {
-    year: '2020',
-    project: 'Poseidon',
-    type: 'Marketing',
-    leader: 'Olivia Wilson',
-    trader: 'Eve Richards',
-  },
-  {
-    year: '2018',
-    project: 'Luna',
-    type: 'Development',
-    leader: 'Noah Taylor',
-    trader: 'Dylan Brooks',
-  },
-  {
-    year: '2022',
-    project: 'Hercules',
-    type: 'Research',
-    leader: 'Sophia Moore',
-    trader: 'Liam White',
-  },
-  {
-    year: '2024',
-    project: 'Zeus',
-    type: 'Marketing',
-    leader: 'Isabella Anderson',
-    trader: 'Emma Cooper',
-  },
-  {
-    year: '2023',
-    project: 'Athena',
-    type: 'Development',
-    leader: 'James Lee',
-    trader: 'Lucas Scott',
-  },
-  {
-    year: '2025',
-    project: 'Hermes',
-    type: 'Research',
-    leader: 'Mia Turner',
-    trader: 'Henry Wright',
-  },
-  {
-    year: '2017',
-    project: 'Ares',
-    type: 'Marketing',
-    leader: 'William Hill',
-    trader: 'Olivia Harris',
-  },
-  {
-    year: '2026',
-    project: 'Prometheus',
-    type: 'Development',
-    leader: 'Ava Martinez',
-    trader: 'Benjamin Lewis',
-  },
-  {
-    year: '2016',
-    project: 'Gaia',
-    type: 'Research',
-    leader: 'Ethan Miller',
-    trader: 'Amelia Clark',
-  },
-];
 
 interface projectsData {
   year: string;
@@ -97,18 +10,45 @@ interface projectsData {
 }
 
 const ProjectsTable = () => {
-  const [filteredData, setFilteredData] = useState(data);
+  const [filteredData, setFilteredData] = useState<projectsData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5042/projects', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          // Make sure you are not in "no-cors" mode, which disables response access.
+        });
+
+        if (!response.ok) {
+          console.error(`HTTP error: Status ${response.status}`);
+        } else {
+          const postsData = await response.json();
+          setFilteredData(postsData);
+        }
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   function handleSort(header: keyof projectsData) {
-    const tempArr = [...filteredData];
-    tempArr.sort((a, b) => a[header].localeCompare(b[header]));
+    if (filteredData != null && filteredData.length > 0) {
+      const tempArr = [...filteredData];
+      tempArr.sort((a, b) => a[header].localeCompare(b[header]));
 
-    const sortArray =
-      JSON.stringify(tempArr) === JSON.stringify(filteredData)
-        ? tempArr.sort((a, b) => a[header].localeCompare(b[header])).reverse()
-        : tempArr;
+      const sortArray =
+        JSON.stringify(tempArr) === JSON.stringify(filteredData)
+          ? tempArr.sort((a, b) => a[header].localeCompare(b[header])).reverse()
+          : tempArr;
 
-    setFilteredData(sortArray);
+      setFilteredData(sortArray);
+    }
   }
 
   return (
