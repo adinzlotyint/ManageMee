@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "Jua";
+  src: local("Jua"), url(./fonts/Jua.ttf) format("truetype");
+}
+
+body {
+  background-size: 20px 20px;
+  background-image: linear-gradient(
+      to right,
+      rgb(207, 207, 207) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgb(207, 207, 207) 1px, transparent 1px);
+}
