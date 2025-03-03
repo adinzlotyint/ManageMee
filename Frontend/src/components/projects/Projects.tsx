@@ -22,11 +22,6 @@ const Projects = () => {
       <div className={styles.notes}>
         <Notes />
       </div>
-      <input
-        type="text"
-        className={styles.searchInput}
-        placeholder="Search through table . . ."
-      />
       <div className={styles.projectsTable}>
         <ProjectsTable />
       </div>

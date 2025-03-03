@@ -1,5 +1,5 @@
 import styles from "./SheepsTable.module.css";
-import SmallSheep from "../../../../assets/SmallSheep";
+import SmallSheep from "../../../../assets/SmallSheep.svg";
 
 const data: sheepsData[] = [
   { sheep: "Adrian Ziętek", md: 3 },
@@ -65,9 +65,15 @@ const SheepsTable = () => {
           <tfoot>
             <tr>
               <td>
-                <SmallSheep />
+                <img
+                  src={SmallSheep}
+                  alt="SmallSheep"
+                  style={{ verticalAlign: "bottom" }}
+                />
               </td>
-              <td>{data.reduce((n, { md }) => n + md, 0)}</td>
+              <td style={{ textAlign: "center" }}>
+                {data.reduce((n, { md }) => n + md, 0)}
+              </td>
             </tr>
           </tfoot>
         </table>

@@ -1,21 +1,17 @@
-import Logo from "../../assets/Logo";
-import NotLogged from "../../assets/NotLogged";
+import NotLogged from "../../assets/NotLogged.svg";
 import styles from "./Navbar.module.css";
+import Logo from "../../assets/logo.svg";
 
 const Navbar = () => {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.logoContainer}>
-        <Logo className={styles.icons} />
+      <img src={Logo} alt="Logo" />
+      <div className={styles.buttons}>
+        <a>Projects</a>
+        <a>Timesheet</a>
+        <a>About</a>
       </div>
-      <div className={styles.navContainer}>
-        <button className={styles.navButton}>Projects</button>
-        <button className={styles.navButton}>Timesheet</button>
-        <button className={styles.navButton}>About</button>
-      </div>
-      <div className={styles.profileContainer}>
-        <NotLogged className={styles.icons} />
-      </div>
+      <img src={NotLogged} alt="NotLogged" />
     </div>
   );
 };
